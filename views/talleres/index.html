@@ -1,0 +1,37 @@
+<%- include('../partials/cabecera', { tituloPagina }) %>
+
+<h1>Catálogo de Talleres</h1>
+
+<form action="/talleres" method="get">
+  <div>
+    <label for="categoria">Categoría</label>
+    <input id="categoria" name="categoria" value="<%= filtros.categoria %>">
+  </div>
+  <div>
+    <label for="nivel">Nivel</label>
+    <select id="nivel" name="nivel">
+      <option value="">Todos</option>
+      <option value="inicial" <%= filtros.nivel === 'inicial' ? 'selected' : '' %>>Inicial</option>
+      <option value="avanzado" <%= filtros.nivel === 'avanzado' ? 'selected' : '' %>>Avanzado</option>
+    </select>
+  </div>
+  <div>
+    <label>
+      <input type="checkbox" name="disponibles" value="true" <%= filtros.disponibles ? 'checked' : '' %>> Solo disponibles
+    </label>
+  </div>
+  <button type="submit">Filtrar</button>
+  <a href="/talleres">Limpiar</a>
+</form>
+
+<ul>
+  <% talleres.forEach(taller => { %>
+    <li>
+      <h3><a href="/talleres/<%= taller.id %>"><%= taller.titulo %></a></h3>
+      <p>Categoría: <%= taller.categoria %> | Nivel: <%= taller.nivel %></p>
+      <p>Plazas restantes: <%= taller.plazasRestantes %></p>
+    </li>
+  <% }) %>
+</ul>
+
+<%- include('../partials/pie') %>

@@ -1,0 +1,23 @@
+<%- include('../partials/cabecera', { tituloPagina }) %>
+
+<article>
+  <h1><%= taller.titulo %></h1>
+  <p>Categoría: <%= taller.categoria %></p>
+  <p>Nivel: <%= taller.nivel %></p>
+  <p>Estado: <%= estadoPlazas %></p>
+
+  <% if (plazasRestantes > 0) { %>
+    <a href="/talleres/<%= taller.id %>/inscripcion" class="btn">Inscribirse</a>
+  <% } else { %>
+    <p class="error">Completo</p>
+  <% } %>
+
+  <h2>Inscritos</h2>
+  <ul>
+    <% inscripcionesTaller.forEach(i => { %>
+      <li><%= i.name || i.nombre %> (<%= i.email %>)</li>
+    <% }) %>
+  </ul>
+</article>
+
+<%- include('../partials/pie') %>

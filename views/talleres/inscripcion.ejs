@@ -1,0 +1,20 @@
+<%- include('../partials/cabecera', { tituloPagina }) %>
+
+<h1>Inscripción: <%= taller.titulo %></h1>
+
+<form action="/talleres/<%= taller.id %>/inscripcion" method="post">
+  <div>
+    <label for="nombre">Nombre</label>
+    <input id="nombre" name="nombre" value="<%= valores.nombre %>">
+    <% if (errores.nombre) { %> <span class="error"><%= errores.nombre %></span> <% } %>
+  </div>
+  <div>
+    <label for="email">Correo electrónico</label>
+    <input id="email" name="email" value="<%= valores.email %>">
+    <% if (errores.email) { %> <span class="error"><%= errores.email %></span> <% } %>
+  </div>
+  <% if (errores.general) { %> <p class="error"><%= errores.general %></p> <% } %>
+  <button type="submit">Enviar inscripción</button>
+</form>
+
+<%- include('../partials/pie') %>
